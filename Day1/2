@@ -1,0 +1,35 @@
+seiveoferatosthenes:
+#include <bits/stdc++.h>
+
+using namespace std;
+void seiveOfEratosthenes(int n)
+{
+    bool prime[n+1];
+    memset(prime,false,sizeof(prime));
+    for(int p=2;p*p<=n;p++)
+    {
+        if(prime[p]==false)
+        {
+            for(int j=p*p;j<=n;j+=p)
+            {
+                prime[j]=true;
+            }
+        }
+    }
+    for(int i=0;i<=n;i++)
+    {
+        if(prime[p]==false)
+        {
+            cout<<p<<" "<<endl;
+        }
+    }
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    seiveOfEratosthenes(n);
+    return 0;
+}
+////////////////////////////////////////////////////////////////////
