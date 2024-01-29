@@ -1,0 +1,39 @@
+#include <iostream>
+#include <unordered_map>
+#include <vector>
+#include <algorithm>
+
+std::vector<int> sortByFreq(const std::vector<int>& nums) {
+    std::unordered_map<int, int> frequency;
+    
+    for (int num : nums) {
+        frequency[num]++;
+    }
+
+    std::vector<std::pair<int, int>> freqPairs(frequency.begin(), frequency.end());
+    std::sort(freqPairs.begin(), freqPairs.end(), 
+        [](const auto& a, const auto& b) {
+            return (a.second == b.second) ? (a.first < b.first) : (a.second > b.second);
+        }
+    );
+
+    std::vector<int> result;
+    for (const auto& pair : freqPairs) {
+        for (int i = 0; i < pair.second; ++i) {
+            result.push_back(pair.first);
+        }
+    }
+
+    return result;
+}
+
+int main() {
+    std::vector<int> nums = {2, 5, 2, 6, -1, 9999999, 5, 8, 8, 8};
+    std::vector<int> result = sortByFreq(nums);
+
+    for (int num : result) {
+        std::cout << num << " ";
+    }
+
+    return 0;
+}
